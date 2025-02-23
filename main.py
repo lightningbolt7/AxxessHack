@@ -22,6 +22,14 @@ def doctor():
 def patient():
     return render_template('patient.html')
 
+@app.route('/skin-analysis')
+def skin():
+    return render_template('skin-analysis.html')
+
+@app.route('/urine-analysis')
+def urine():
+    return render_template('urine-analysis.html')
+
 @app.route('/upload_image', methods=['POST'])
 def upload_image():
     # Handle image upload
@@ -54,10 +62,10 @@ def upload_image():
 #################################################################################################################
 
 # Handle 404 errors
-def page_not_found(e):
-    return render_template('404.html'), 404
+# def page_not_found(e):
+#     return render_template('404.html'), 404
 
-app.register_error_handler(404, page_not_found)
+# app.register_error_handler(404, page_not_found)
 
 if __name__ == "__main__":
     app.run(debug=True)
