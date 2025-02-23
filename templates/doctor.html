@@ -128,7 +128,7 @@
             <p><strong>Management:</strong> Smoking cessation, bronchodilators, inhaled steroids, pulmonary rehabilitation</p> -->
         </div>
         <div class="doctor-info">
-            <img src="/placeholder.svg?height=100&width=100" alt="Doctor Photo" class="doctor-image">
+            <img src="{{ url_for('static', filename='patientPic.png') }}" alt="Doctor Photo" class="doctor-image">
             <div>
                 <h2>Dr. Jane Smith</h2>
                 <p>Specialization: Pulmonology</p>
@@ -137,36 +137,28 @@
         <div class="patient-list">
             <h2>Your COPD Patients</h2>
             <div class="patient-card">
-                <img src="/placeholder.svg?height=60&width=60" alt="Patient Photo" class="patient-image">
+                <img src="{{ url_for('static', filename='patientPic.png') }}" alt="Patient Photo" class="patient-image">
                 <div class="patient-info">
-                    <div class="patient-name">Arvind</div>
+                    <div class="patient-name">Arvindh</div>
                     <div class="patient-details">Age: 35 | COPD Stage: Moderate | Next Appointment: 15 May 2025</div>
                 </div>
-                <button class="view-button" onclick="location.href='patient'">View Details</button>
+                <a href='patient'><button class="view-button" >View Details</button></a>
             </div>
             <div class="patient-card">
-                <img src="/placeholder.svg?height=60&width=60" alt="Patient Photo" class="patient-image">
+                <img src="{{ url_for('static', filename='patientPic.png') }}" alt="Patient Photo" class="patient-image">
                 <div class="patient-info">
-                    <div class="patient-name">Sarah Johnson</div>
+                    <div class="patient-name">Zulu Johnson</div>
                     <div class="patient-details">Age: 72 | COPD Stage: Severe | Next Appointment: 18 May 2025</div>
                 </div>
-                <button class="view-button" onclick="location.href='patient'">View Details</button>
+                <a href='patient2'><button class="view-button" >View Details</button></a>
             </div>
             <div class="patient-card">
-                <img src="/placeholder.svg?height=60&width=60" alt="Patient Photo" class="patient-image">
+                <img src="{{ url_for('static', filename='patientPic.png') }}" alt="Patient Photo" class="patient-image">
                 <div class="patient-info">
-                    <div class="patient-name">Michael Brown</div>
+                    <div class="patient-name">Hana Brown</div>
                     <div class="patient-details">Age: 58 | COPD Stage: Mild | Next Appointment: 20 May 2025</div>
                 </div>
-                <button class="view-button" onclick="location.href='patient'">View Details</button>
-            </div>
-            <div class="patient-card">
-                <img src="/placeholder.svg?height=60&width=60" alt="Patient Photo" class="patient-image">
-                <div class="patient-info">
-                    <div class="patient-name">Emily Davis</div>
-                    <div class="patient-details">Age: 68 | COPD Stage: Very Severe | Next Appointment: 22 May 2025</div>
-                </div>
-                <button class="view-button" onclick="location.href='patient-page'">View Details</button>
+                <a href='patient3'><button class="view-button" >View Details</button></a>
             </div>
         </div>
     </div>

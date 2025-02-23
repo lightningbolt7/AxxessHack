@@ -1,6 +1,12 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
+import subprocess
+import pandas as pd
 
 app = Flask(__name__)
+
+# Load dataset
+file_path = "data1.csv"
+data = pd.read_csv(file_path)
 
 @app.route('/')
 def home():
@@ -22,6 +28,14 @@ def doctor():
 def patient():
     return render_template('patient.html')
 
+@app.route('/patient2')
+def patient2():
+    return render_template('patient2.html')
+
+@app.route('/patient3')
+def patient3():
+    return render_template('patient3.html')
+
 @app.route('/skin-analysis')
 def skin():
     return render_template('skin-analysis.html')
@@ -32,40 +46,18 @@ def urine():
 
 @app.route('/upload_image', methods=['POST'])
 def upload_image():
-    # Handle image upload
     return jsonify({"message": "Image uploaded"})
 
-
-###### Flask Possible method for image recognition: ################################################################################
-# @app.route('/upload_image', methods=['POST'])
-# def upload_image():
-#     if 'image' not in request.files:
-#         return jsonify({'error': 'No image uploaded'}), 400
-
-#     image = request.files['image']
-#     upload_type = request.form.get('uploadType')
-#     body_area = request.form.get('bodyArea')
-
-#     # Save the image and get its path
-#     image_path = save_uploaded_image(image)
-
-#     # Analyze the image using your trained model
-#     if upload_type == 'skin':
-#         result = your_trained_model.analyze_skin_image(image_path, body_area)
-#     else:  # urine
-#         result = your_trained_model.analyze_urine_image(image_path)
-
-#     return jsonify({
-#         'image_url': image_path,
-#         'analysis_result': result
-#     })
-#################################################################################################################
-
-# Handle 404 errors
-# def page_not_found(e):
-#     return render_template('404.html'), 404
-
-# app.register_error_handler(404, page_not_found)
+@app.route('/run-training', methods=['POST'])
+def run_training():
+    try:
+        # Start plot.py in a non-blocking way
+        process = subprocess.Popen(["python", "plot.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        print("Training script started successfully.")
+        return jsonify({"message": "Training started successfully!"})
+    except Exception as e:
+        print(f"Error starting training: {e}")
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
