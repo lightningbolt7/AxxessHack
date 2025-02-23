@@ -3,28 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Making you better, everyday
-        <!-- <nav class="fixed top-0 w-full bg-white shadow-md z-50">
-            <div class="container mx-auto px-6 py-4">
-                <div class="flex items-center justify-between">
-                    <a href = "index.html">
-                        <button class="bg-lavender text-white px-6 py-2 rounded-full hover:bg-lavender-dark transition duration-300">
-                            Logout
-                        </button>
-                    </a>
-                </div>
-            </div>
-        </nav> -->
-    </title>
+    <title>Making you better, everyday</title>
     <style>
         :root {
-            --lavender-light: #E6E6FA;
-            --lavender: #9370DB;
-            --lavender-dark: #8A2BE2;
             --pink-lightest: #FFF0F5;
             --pink-light: #FFC0CB;
             --pink: #FF69B4;
             --pink-dark: #FF1493;
+            --pink-darker: #C71585;
         }
         body {
             font-family: Arial, sans-serif;
@@ -39,17 +25,35 @@
             padding: 20px;
         }
         header {
-            background-color: var(--lavender);
+            background-color: var(--pink);
             color: white;
             padding: 20px 0;
             text-align: center;
+            position: relative;
+        }
+        .logout-btn {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            color: var(--pink);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .logout-btn:hover {
+            background-color: var(--pink-dark);
+            color: white;
         }
         h1 {
             margin: 0;
         }
         .patient-card {
             background-color: white;
-            border-radius: 8px;
+            border-radius: 15px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
             padding: 20px;
@@ -57,6 +61,26 @@
         .patient-info {
             text-align: center;
             margin-bottom: 20px;
+            position: relative;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+        .btn {
+            background-color: var(--pink);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 10px;
+        }
+        .btn:hover {
+            background-color: var(--pink-dark);
+            transform: translateY(-2px);
         }
         .patient-image {
             width: 150px;
@@ -64,16 +88,16 @@
             border-radius: 50%;
             object-fit: cover;
             margin: 0 auto 20px;
-            border: 4px solid var(--lavender-light);
+            border: 4px solid var(--pink-light);
         }
         .section {
             margin-top: 20px;
-            background-color: var(--lavender-light);
+            background-color: var(--pink-lightest);
             padding: 15px;
-            border-radius: 8px;
+            border-radius: 15px;
         }
         h2 {
-            color: var(--lavender-dark);
+            color: var(--pink-darker);
             border-bottom: 2px solid var(--pink);
             padding-bottom: 10px;
             margin-top: 0;
@@ -84,9 +108,13 @@
         }
         li {
             margin-bottom: 10px;
-            padding: 10px;
+            padding: 12px;
             background-color: white;
-            border-radius: 4px;
+            border-radius: 8px;
+            transition: transform 0.2s ease;
+        }
+        li:hover {
+            transform: translateX(5px);
         }
         .medication {
             display: flex;
@@ -96,29 +124,84 @@
         .badge {
             background-color: var(--pink);
             color: white;
-            padding: 5px 10px;
+            padding: 5px 15px;
             border-radius: 20px;
             font-size: 0.8em;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+        .close-btn {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--pink-dark);
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--pink-darker);
+        }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--pink-light);
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .predict-btn, .submit-btn {
+            width: 100%;
+            background-color: var(--pink);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .predict-btn:hover, .submit-btn:hover {
+            background-color: var(--pink-dark);
         }
     </style>
 </head>
 <body>
     <header>
         <h1>Making you better, everyday</h1>
-        <nav class="fixed top-0 w-full bg-white shadow-md z-50">
-            <div class="container mx-auto px-6 py-4">
-                <div class="flex items-center justify-between">
-                    <a href = "index.html">
-                        <button class="bg-lavender text-white px-6 py-2 rounded-full hover:bg-lavender-dark transition duration-300">
-                            Logout
-                        </button>
-                    </a>
-                </div>
-            </div>
-        </nav>
+        <button class="logout-btn" onclick="location.href='index.html'">Logout</button>
     </header>
     <div class="container">
         <div class="patient-card">
+            <div class="action-buttons">
+                <button class="btn" onclick="openUpdateModal()">Update</button>
+                <button class="btn" onclick="openUploadModal()">Upload</button>
+            </div>
             <div class="patient-info">
                 <img src="patientPic.png" alt="Patient Photo" class="patient-image">
                 <h2>Arvindh</h2>
@@ -159,5 +242,95 @@
             </div>
         </div>
     </div>
+
+    <!-- Update Modal -->
+    <div id="updateModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('updateModal')">&times;</button>
+            <h2>Diabetes Risk Predictor</h2>
+            <div class="input-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" value="35">
+            </div>
+            <div class="input-group">
+                <label for="bmi">BMI</label>
+                <input type="number" id="bmi" step="0.1">
+            </div>
+            <div class="input-group">
+                <label for="glucose">Glucose Level</label>
+                <input type="number" id="glucose">
+            </div>
+            <div class="input-group">
+                <label for="bloodPressure">Blood Pressure</label>
+                <input type="number" id="bloodPressure">
+            </div>
+            <div class="input-group">
+                <label for="insulin">Insulin Level</label>
+                <input type="number" id="insulin">
+            </div>
+            <button class="predict-btn">Predict Risk</button>
+        </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div id="uploadModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('uploadModal')">&times;</button>
+            <h2>Upload Image</h2>
+            <div class="input-group">
+                <label for="imageUpload">Select Image</label>
+                <input type="file" id="imageUpload" accept="image/*">
+            </div>
+            <div class="input-group">
+                <label for="bodyArea">Select Body Area</label>
+                <select id="bodyArea">
+                    <option value="">Select an option</option>
+                    <option value="anterior_torso">Anterior Torso</option>
+                    <option value="head_neck">Head/Neck</option>
+                    <option value="upper_extremity">Upper Extremity</option>
+                    <option value="lower_extremity">Lower Extremity</option>
+                    <option value="palms_soles">Palms/Soles</option>
+                    <option value="oral_genital">Oral/Genital</option>
+                </select>
+            </div>
+            <button class="submit-btn" onclick="uploadImage()">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        function openUpdateModal() {
+            document.getElementById('updateModal').style.display = 'flex';
+        }
+
+        function openUploadModal() {
+            document.getElementById('uploadModal').style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        function uploadImage() {
+            const fileInput = document.getElementById('imageUpload');
+            const bodyArea = document.getElementById('bodyArea').value;
+
+            if (fileInput.files.length > 0 && bodyArea) {
+                // Here you would typically send the file and body area to your server
+                console.log('File selected:', fileInput.files[0].name);
+                console.log('Body area selected:', bodyArea);
+                alert('Image uploaded successfully!');
+                closeModal('uploadModal');
+            } else {
+                alert('Please select both an image and a body area.');
+            }
+        }
+    </script>
 </body>
 </html>
