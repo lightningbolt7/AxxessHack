@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Service</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lavender: {
+                            light: '#E6E6FA',
+                            DEFAULT: '#9370DB',
+                            dark: '#8A2BE2',
+                        },
+                        pink: {
+                            lightest: '#FFF0F5',
+                            light: '#FFC0CB',
+                            DEFAULT: '#FF69B4',
+                            dark: '#FF1493',
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        .fade-text {
+            animation: fadeInOut 4s infinite;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #E6E6FA, #FFC0CB);
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-pink-lightest">
+    <!-- Fixed Navigation -->
+    <nav class="fixed top-0 w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#" class="text-2xl font-bold text-lavender-dark">HealthCare</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-pink transition duration-300">About</a>
+                    <a href="#contact" class="text-gray-600 hover:text-pink transition duration-300">Contact</a>
+                        <a href = "login.html">
+                            <button class="bg-lavender text-white px-6 py-2 rounded-full hover:bg-lavender-dark transition duration-300">
+                                Login
+                            </button>
+                        </a>                    
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient pt-24 pb-16 md:pt-32 md:pb-24">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-center md:text-left">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                        Experience Healthcare with a Personal Touch
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Providing compassionate care that puts you first. Your health journey begins with understanding and support.
+                    </p>
+                    <div class="fade-text text-xl font-semibold text-lavender-dark mb-8">
+                        Your Life Matters To Us
+                    </div>
+                    <button class="bg-pink hover:bg-pink-dark text-white font-semibold px-8 py-3 rounded-full transition duration-300">
+                        Get Started
+                    </button>
+                </div>
+                <div class="hidden md:block">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-HzzeI2l2Klk5SRBdk54PqdGQ09wUPp.png" alt="Healthcare Service" class="rounded-lg shadow-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="bg-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-3 gap-8 text-center">
+                <div class="card-hover bg-pink-lightest p-6 rounded-xl">
+                    <h3 class="text-3xl font-bold text-pink-dark">30+</h3>
+                    <p class="text-gray-600">Years Experience</p>
+                </div>
+                <div class="card-hover bg-pink-lightest p-6 rounded-xl">
+                    <h3 class="text-3xl font-bold text-pink-dark">1000+</h3>
+                    <p class="text-gray-600">Happy Patients</p>
+                </div>
+                <div class="card-hover bg-pink-lightest p-6 rounded-xl">
+                    <h3 class="text-3xl font-bold text-pink-dark">24/7</h3>
+                    <p class="text-gray-600">Available Care</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-16" id="about">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Our Services</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-white p-6 rounded-xl shadow-sm">
+                    <div class="text-pink text-xl font-semibold mb-4">Primary Care</div>
+                    <p class="text-gray-600">Comprehensive health services for you and your family's everyday needs.</p>
+                </div>
+                <div class="card-hover bg-white p-6 rounded-xl shadow-sm">
+                    <div class="text-pink text-xl font-semibold mb-4">Specialized Care</div>
+                    <p class="text-gray-600">Expert care in specific medical fields to address your unique health concerns.</p>
+                </div>
+                <div class="card-hover bg-white p-6 rounded-xl shadow-sm">
+                    <div class="text-pink text-xl font-semibold mb-4">Preventive Care</div>
+                    <p class="text-gray-600">Proactive health management to keep you healthy and prevent future issues.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Statement -->
+    <section class="bg-lavender text-white py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-6">Our Mission</h2>
+            <p class="text-lg max-w-3xl mx-auto leading-relaxed">
+                Our mission is to provide compassionate, high-quality healthcare that enhances the lives of our patients and their families. 
+                We believe in creating a healing environment where every person is treated with dignity, respect, and understanding.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-8" id="contact">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold text-lavender-dark mb-4">HealthCare</h3>
+                    <p class="text-gray-600">Your trusted partner in health and wellness.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-4">Contact Us</h4>
+                    <p class="text-gray-600">1234 Healthcare Ave<br>Medical City, MC 12345<br>Phone: (123) 456-7890</p>
+                </div>
+            </div>
+            <div class="border-t mt-8 pt-8 text-center text-gray-600">
+                <p>&copy; 2025 Healthcare Service. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
