@@ -280,7 +280,7 @@
 
             auth.signInWithEmailAndPassword(email, password)
                 .then((userCredential) => {
-                    if(email == "mxu220004@utdallas.edu"){
+                    if(email.endsWith("@utdallas.edu")){
                         window.location.href = 'doctor.html';
                     }
                     else{
