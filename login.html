@@ -174,7 +174,7 @@
     <nav class="fixed top-0 w-full bg-white shadow-md z-50">
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <a href = "patient.html">
+                <a href = "patient">
                     <button class="bg-lavender text-white px-6 py-2 rounded-full hover:bg-lavender-dark transition duration-300">
                         Patient
                     </button>
@@ -281,10 +281,10 @@
             auth.signInWithEmailAndPassword(email, password)
                 .then((userCredential) => {
                     if(email.endsWith("@utdallas.edu")){
-                        window.location.href = 'doctor.html';
+                        window.location.href = 'doctor';
                     }
                     else{
-                    window.location.href = 'patient.html';
+                    window.location.href = 'patient';
                     }
                 })
                 .catch((error) => {
@@ -316,7 +316,7 @@
 
             auth.createUserWithEmailAndPassword(email, password)
                 .then((userCredential) => {
-                    window.location.href = 'index.html';
+                    window.location.href = 'index';
                 })
                 .catch((error) => {
                     errorElement.style.display = 'block';
