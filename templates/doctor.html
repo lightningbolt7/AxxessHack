@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard - COPD Patients</title>
+    <style>
+        :root {
+            --pink-lightest: #FFF0F5;
+            --pink-light: #FFC0CB;
+            --pink: #FF69B4;
+            --pink-dark: #FF1493;
+            --pink-darker: #C71585;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--pink-lightest);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: var(--pink);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        h1, h2 {
+            margin: 0;
+        }
+        .copd-info {
+            background-color: var(--pink-light);
+            color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .copd-info h2 {
+            color: var(--pink-darker);
+            margin-bottom: 10px;
+        }
+        .copd-info p {
+            margin: 5px 0;
+        }
+        .doctor-info {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .doctor-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+            border: 3px solid var(--pink-light);
+        }
+        .patient-list {
+            margin-top: 30px;
+        }
+        .patient-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .patient-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        .patient-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 2px solid var(--pink-light);
+        }
+        .patient-info {
+            flex-grow: 1;
+        }
+        .patient-name {
+            font-weight: bold;
+            color: var(--pink-darker);
+            margin-bottom: 5px;
+        }
+        .patient-details {
+            font-size: 0.9em;
+            color: #666;
+        }
+        .view-button {
+            background-color: var(--pink);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .view-button:hover {
+            background-color: var(--pink-dark);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Doctor Dashboard</h1>
+    </header>
+    <div class="container">
+        <div class="copd-info">
+            <h2>COPD Information</h2>
+            <p><strong>Graph</strong> Draw a graph here ;]</p>
+            <!-- <p><strong>Common Symptoms:</strong> Shortness of breath, chronic cough, wheezing, chest tightness</p>
+            <p><strong>Management:</strong> Smoking cessation, bronchodilators, inhaled steroids, pulmonary rehabilitation</p> -->
+        </div>
+        <div class="doctor-info">
+            <img src="{{ url_for('static', filename='patientPic.png') }}" alt="Doctor Photo" class="doctor-image">
+            <div>
+                <h2>Dr. Jane Smith</h2>
+                <p>Specialization: Pulmonology</p>
+            </div>
+        </div>
+        <div class="patient-list">
+            <h2>Your COPD Patients</h2>
+            <div class="patient-card">
+                <img src="{{ url_for('static', filename='patientPic.png') }}" alt="Patient Photo" class="patient-image">
+                <div class="patient-info">
+                    <div class="patient-name">Arvindh</div>
+                    <div class="patient-details">Age: 35 | COPD Stage: Moderate | Next Appointment: 15 May 2025</div>
+                </div>
+                <a href='patient'><button class="view-button" >View Details</button></a>
+            </div>
+            <div class="patient-card">
+                <img src="{{ url_for('static', filename='patientPic.png') }}" alt="Patient Photo" class="patient-image">
+                <div class="patient-info">
+                    <div class="patient-name">Zulu Johnson</div>
+                    <div class="patient-details">Age: 72 | COPD Stage: Severe | Next Appointment: 18 May 2025</div>
+                </div>
+                <a href='patient2'><button class="view-button" >View Details</button></a>
+            </div>
+            <div class="patient-card">
+                <img src="{{ url_for('static', filename='patientPic.png') }}" alt="Patient Photo" class="patient-image">
+                <div class="patient-info">
+                    <div class="patient-name">Hana Brown</div>
+                    <div class="patient-details">Age: 58 | COPD Stage: Mild | Next Appointment: 20 May 2025</div>
+                </div>
+                <a href='patient3'><button class="view-button" >View Details</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

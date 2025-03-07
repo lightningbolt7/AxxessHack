@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Analysis</title>
+    <style>
+        :root {
+            --pink-lightest: #FFF0F5;
+            --pink-light: #FFC0CB;
+            --pink: #FF69B4;
+            --pink-dark: #FF1493;
+            --pink-darker: #C71585;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--pink-lightest);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: var(--pink);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            position: relative;
+        }
+        h1 {
+            margin: 0;
+        }
+        .back-btn {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            color: var(--pink);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .back-btn:hover {
+            background-color: var(--pink-dark);
+            color: white;
+        }
+        .upload-section {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            padding: 20px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--pink-darker);
+        }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--pink-light);
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .submit-btn {
+            width: 100%;
+            background-color: var(--pink);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .submit-btn:hover {
+            background-color: var(--pink-dark);
+        }
+        #resultSection {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 15px;
+            background-color: white;
+            display: none;
+        }
+        #resultImage {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="patient" class="back-btn">Back</a>
+        <h1>Skin Analysis</h1>
+    </header>
+    <div class="container">
+        <div class="upload-section">
+            <form id="uploadForm" enctype="multipart/form-data">
+                <div class="input-group">
+                    <label for="imageUpload">Select Skin Image</label>
+                    <input type="file" id="imageUpload" name="image" accept="image/*" required>
+                </div>
+                <div class="input-group">
+                    <label for="bodyArea">Select Body Area</label>
+                    <select id="bodyArea" name="bodyArea" required>
+                        <option value="">Select an option</option>
+                        <option value="anterior_torso">Anterior Torso</option>
+                        <option value="head_neck">Head/Neck</option>
+                        <option value="upper_extremity">Upper Extremity</option>
+                        <option value="lower_extremity">Lower Extremity</option>
+                        <option value="palms_soles">Palms/Soles</option>
+                        <option value="oral_genital">Oral/Genital</option>
+                    </select>
+                </div>
+                <input type="hidden" name="uploadType" value="skin">
+                <button type="submit" class="submit-btn">Analyze Skin</button>
+            </form>
+        </div>
+        <div id="resultSection">
+            <h2>Analysis Result</h2>
+            <img id="resultImage" src="/placeholder.svg" alt="Analyzed Skin Image">
+            <p id="resultText"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+
+            fetch('{{ url_for("upload_image") }}', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                displayResult(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while uploading the image.');
+            });
+        });
+
+        function displayResult(data) {
+            const resultSection = document.getElementById('resultSection');
+            const resultImage = document.getElementById('resultImage');
+            const resultText = document.getElementById('resultText');
+
+            resultImage.src = data.image_url;
+            resultText.textContent = data.analysis_result;
+            resultSection.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
